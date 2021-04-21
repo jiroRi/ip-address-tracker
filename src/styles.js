@@ -11,12 +11,24 @@ const size = {
 
 export const theme = {
   colors: {
-    gray: "hsl(0, 0%, 17%)",
-    darkGray: "hsl(0, 0%, 59%)",
+    gray: "hsl(0, 0%, 59%)",
+    darkGray: "hsl(0, 0%, 17%)",
+    black: "hsl(0, 0%, 0%)",
+    white: "#ffffff",
   },
 
   fontSize: {
-    body: "1.125rem",
+    title: "1.125rem",
+    mobileTitle: "1.5rem",
+
+    label: "0.5rem",
+    mobileLabel: "0.625rem",
+
+    card: "0.875rem",
+    mobileCard: "1.25rem",
+
+    mobileInput: "1.125rem",
+    input: "0.625rem",
   },
 
   fontWeight: {

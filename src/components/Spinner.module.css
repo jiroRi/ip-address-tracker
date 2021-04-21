@@ -4,13 +4,13 @@
   background: #53a1a1;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
-  width: 1em;
-  height: 4em;
+  width: 1em !important;
+  height: 4em !important;
 }
 .loader {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 0;
+  top: 0;
   z-index: 25;
 
   display: flex;
