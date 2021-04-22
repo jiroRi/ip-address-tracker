@@ -6,7 +6,15 @@ import { GlobalStyle } from "./GlobalStyle";
 import { theme } from "./styles";
 import bg from "./images/pattern-bg.png";
 
-import { Text, Map, Input, Button, Spinner, Card } from "./components";
+import {
+  Text,
+  Map,
+  Input,
+  Button,
+  Spinner,
+  Card,
+  Attribution,
+} from "./components";
 
 const App = () => {
   const [data, setData] = useState({
@@ -102,8 +110,9 @@ const App = () => {
               }
               error={error}
               onKeyPress={onSearchEnter}
+              ariaLabel="Search for any IP address or domain"
             />
-            <Button onClick={searchIpHandler} />
+            <Button onClick={searchIpHandler} ariaLabel="Click to Search" />
           </Search>
           <Card
             ip={loading ? "---.---.---.---" : data.ip}
@@ -138,6 +147,7 @@ const App = () => {
           )}
         </MapSection>
       </Container>
+      <Attribution />
     </ThemeProvider>
   );
 };
