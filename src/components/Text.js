@@ -18,7 +18,7 @@ const StyledText = styled.p`
       line-height: ${props.theme.fontSize.mobileTitle};
       font-weight: ${props.theme.fontWeight.bold};
 
-      @media ${props.theme.device.laptop} {
+      @media ${props.theme.device.tablet} {
         font-size: ${props.theme.fontSize.title};
         line-height: ${props.theme.fontSize.title};
       }
@@ -33,10 +33,12 @@ const StyledText = styled.p`
       line-height: ${props.theme.fontSize.mobileLabel};
       margin-bottom: 8px;
       
-      @media ${props.theme.device.laptop} {
+      @media ${props.theme.device.tablet} {
         font-size: ${props.theme.fontSize.label};
         line-height: ${props.theme.fontSize.label};
-        letter-spacing: 0px;
+
+        margin-top: 8px;
+
       }
     `}
 
@@ -46,11 +48,10 @@ const StyledText = styled.p`
       color: ${props.theme.colors.darkGray};
       font-size: ${props.theme.fontSize.mobileCard};
       font-weight: ${props.theme.fontWeight.medium};
-      line-height: ${props.theme.fontSize.mobileCard};
+      line-height: 1.5;
 
-      @media ${props.theme.device.laptop} {
+      @media ${props.theme.device.tablet} {
         font-size: ${props.theme.fontSize.card};
-        line-height: ${props.theme.fontSize.card};
       }
 
     `}

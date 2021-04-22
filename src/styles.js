@@ -18,17 +18,17 @@ export const theme = {
   },
 
   fontSize: {
-    title: "1.125rem",
-    mobileTitle: "1.5rem",
+    title: "2rem",
+    mobileTitle: "1.25rem",
 
-    label: "0.5rem",
+    label: "0.75rem",
     mobileLabel: "0.625rem",
 
-    card: "0.875rem",
-    mobileCard: "1.25rem",
+    card: "1.5rem",
+    mobileCard: "1rem",
 
-    mobileInput: "1.125rem",
-    input: "0.625rem",
+    input: "1.125rem",
+    mobileInput: "1rem",
   },
 
   fontWeight: {

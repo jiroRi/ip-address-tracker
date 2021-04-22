@@ -6,21 +6,21 @@ import { GlobalStyle } from "./GlobalStyle";
 import { theme } from "./styles";
 import bg from "./images/pattern-bg.png";
 
-import { Text, Map, Input, Button, Spinner } from "./components";
+import { Text, Map, Input, Button, Spinner, Card } from "./components";
 
 const App = () => {
   const [data, setData] = useState({
-    ip: "66.254.114.41",
-    isp: "Reflected Networks, Inc.",
+    ip: "192.212.174.101",
+    isp: `SpaceX Starlink`,
     location: {
-      city: "Waltham",
+      city: "Brooklyn",
       country: "US",
       geonameId: 4954380,
       lat: 42.37649,
       lng: -71.23561,
-      postalCode: "02451",
-      region: "Massachusetts",
-      timezone: "-04:00",
+      postalCode: "10001",
+      region: "NY",
+      timezone: "-05:00",
     },
   });
 
@@ -41,7 +41,7 @@ const App = () => {
     console.log(typeof position[0], position[0]);
 
     map.setView(
-      [parseFloat(position[0]).toFixed(2), parseFloat(position[1]).toFixed(2)],
+      [parseFloat(position[0]) + parseFloat(0.0005), parseFloat(position[1])],
       20
     );
   };
@@ -77,27 +77,15 @@ const App = () => {
             />
             <Button onClick={searchIpHandler} />
           </Search>
-
-          <Info>
-            <Text variant="label">IP ADDRESS</Text>
-            <Text variant="card">{loading ? "---.---.---.---" : data.ip}</Text>
-
-            <Text variant="label">LOCATION</Text>
-            <Text variant="card">
-              {loading
-                ? "---"
-                : `${data.location.city}, ${data.location.region}
-                ${data.location.postalCode}`}
-            </Text>
-
-            <Text variant="label">TIMEZONE</Text>
-            <Text variant="card">
-              UTC {loading ? "--:--" : data.location.timezone}
-            </Text>
-
-            <Text variant="label">ISP</Text>
-            <Text variant="card">{loading ? "---" : data.isp}</Text>
-          </Info>
+          <Card
+            ip={data.ip}
+            loading={loading}
+            city={data.location.city}
+            region={data.location.region}
+            postalCode={data.location.postalCode}
+            timezone={data.location.timezone}
+            isp={data.isp}
+          />
         </ContentSection>
         <MapSection>
           {loading ? (
@@ -105,15 +93,15 @@ const App = () => {
           ) : (
             <Map
               center={[
-                parseFloat(position[0]).toFixed(2),
-                parseFloat(position[1]).toFixed(2),
+                parseFloat(position[0]) + parseFloat(0.0005),
+                parseFloat(position[1]),
               ]}
               zoom={20}
               scrollWheelZoom={true}
               whenCreated={setMap}
               markerPosition={[
-                parseFloat(position[0]).toFixed(2),
-                parseFloat(position[1]).toFixed(2),
+                parseFloat(position[0]),
+                parseFloat(position[1]),
               ]}
             />
           )}
@@ -140,39 +128,38 @@ const ContentSection = styled.div`
   align-items: center;
   width: 100%;
   height: 300px;
-  min-height: 300px;
+  max-height: 300px;
   background-image: url(${bg});
 
   padding: 24px 24px 0 24px;
+
+  @media ${(props) => props.theme.device.tablet} {
+    padding: 64px 64px 0 64px;
+  }
+
+  @media ${(props) => props.theme.device.tablet} {
+    max-height: 280px;
+    padding: 32px 32px 0 32px;
+  }
 `;
 
 const Search = styled.div`
   position: relative;
 
   width: 100%;
-  height: 56px;
+  height: 48px;
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(15, 15, 15, 0.15);
   margin: 32px 0;
 
-  overflow: hidden;
-
-  @media ${(props) => props.theme.device.desktopS} {
-    width: 38.54166666666667%;
+  @media ${(props) => props.theme.device.tablet} {
+    max-width: 556px;
+    height: 56px;
   }
-`;
 
-const Info = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  width: 100%;
-  background-color: ${(props) => props.theme.colors.white};
-  border-radius: 16px;
+  @media ${(props) => props.theme.device.laptop} {
+    margin: 32px 0 48px 0;
+  }
 `;
 
 const MapSection = styled.div`
@@ -183,7 +170,7 @@ const MapSection = styled.div`
   justify-content: center;
 
   width: 100%;
-  height: 80vh;
+  height: 100%;
 
   & > div {
     width: 100%;

@@ -11,6 +11,7 @@ const Container = styled.input`
   width: 100%;
   height: 100%;
   padding: 16px 64px 16px 24px;
+  border-radius: 16px;
   outline: none;
 
   color: ${(props) => props.theme.colors.black};
