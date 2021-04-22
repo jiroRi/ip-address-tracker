@@ -8,9 +8,7 @@ export const Card = (props) => {
     <Container>
       <CardItem>
         <Text variant="label">IP ADDRESS</Text>
-        <Text variant="card">
-          {props.loading ? "---.---.---.---" : props.ip}
-        </Text>
+        <Text variant="card">{props.ip}</Text>
       </CardItem>
 
       <Separator />
@@ -18,9 +16,7 @@ export const Card = (props) => {
       <CardItem>
         <Text variant="label">LOCATION</Text>
         <Text variant="card">
-          {props.loading
-            ? "---"
-            : `${props.city}, ${props.region}
+          {`${props.city}, ${props.region}
                 ${props.postalCode}`}
         </Text>
       </CardItem>
@@ -29,16 +25,14 @@ export const Card = (props) => {
 
       <CardItem>
         <Text variant="label">TIMEZONE</Text>
-        <Text variant="card">
-          UTC {props.loading ? "--:--" : props.timezone}
-        </Text>
+        <Text variant="card">UTC {props.timezone}</Text>
       </CardItem>
 
       <Separator />
 
       <CardItem>
         <Text variant="label">ISP</Text>
-        <Text variant="card">{props.loading ? "---" : props.isp}</Text>
+        <Text variant="card">{props.isp}</Text>
       </CardItem>
     </Container>
   );
@@ -57,6 +51,7 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.colors.white};
   border-radius: 16px;
   padding: 12px;
+  box-shadow: 2px 4px 8px rgba(5, 5, 5, 0.15);
 
   @media ${(props) => props.theme.device.tablet} {
     flex-flow: row wrap;

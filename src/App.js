@@ -10,7 +10,7 @@ import { Text, Map, Input, Button, Spinner, Card } from "./components";
 
 const App = () => {
   const [data, setData] = useState({
-    ip: "192.212.174.101",
+    /*     ip: "192.212.174.101",
     isp: `SpaceX Starlink`,
     location: {
       city: "Brooklyn",
@@ -21,12 +21,12 @@ const App = () => {
       postalCode: "10001",
       region: "NY",
       timezone: "-05:00",
-    },
+    }, */
   });
 
   const [inputIp, setInputIp] = useState("");
   const [searchIp, setSearchIp] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([0, 0]);
@@ -47,7 +47,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    /*     axios
+    axios
       .get(
         `https://geo.ipify.org/api/v1?apiKey=at_y4YhHJFie5l0wGKToY6vDDQ9FmWqI&domain=${searchIp}`
       )
@@ -59,7 +59,7 @@ const App = () => {
 
         console.log(data);
       })
-      .catch((err) => console.log(err)); */
+      .catch((err) => console.log(err));
   }, [searchIp]);
 
   return (
@@ -78,13 +78,12 @@ const App = () => {
             <Button onClick={searchIpHandler} />
           </Search>
           <Card
-            ip={data.ip}
-            loading={loading}
-            city={data.location.city}
-            region={data.location.region}
-            postalCode={data.location.postalCode}
-            timezone={data.location.timezone}
-            isp={data.isp}
+            ip={loading ? "---.---.---.---" : data.ip}
+            city={loading ? "---" : data.location.city}
+            region={loading ? "---" : data.location.region}
+            postalCode={loading ? "---" : data.location.postalCode}
+            timezone={loading ? "--:--" : data.location.timezone}
+            isp={loading ? "---" : data.isp}
           />
         </ContentSection>
         <MapSection>
@@ -130,6 +129,7 @@ const ContentSection = styled.div`
   height: 300px;
   max-height: 300px;
   background-image: url(${bg});
+  background-size: 100% 100%;
 
   padding: 24px 24px 0 24px;
 
