@@ -57,7 +57,10 @@ const App = () => {
       setError(false);
 
       map.setView(
-        [parseFloat(position[0]) + parseFloat(0.0005), parseFloat(position[1])],
+        [
+          parseFloat(position[0]) + parseFloat(0.0005),
+          parseFloat(position[1]) - parseFloat(0.00025),
+        ],
         17
       );
     }
@@ -119,7 +122,7 @@ const App = () => {
               className="map"
               center={[
                 parseFloat(position[0]) + parseFloat(0.00025),
-                parseFloat(position[1]),
+                parseFloat(position[1]) - parseFloat(0.00025),
               ]}
               zoom={17}
               scrollWheelZoom={true}
