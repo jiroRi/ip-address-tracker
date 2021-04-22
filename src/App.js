@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
+// eslint-disable-next-line
 import axios from "axios";
 
 import { GlobalStyle } from "./GlobalStyle";
@@ -9,6 +10,7 @@ import bg from "./images/pattern-bg.png";
 import { Text, Map, Input, Button, Spinner, Card } from "./components";
 
 const App = () => {
+  // eslint-disable-next-line
   const [data, setData] = useState({
     ip: "192.212.174.101",
     isp: `SpaceX Starlink`,
@@ -16,8 +18,8 @@ const App = () => {
       city: "Brooklyn",
       country: "US",
       geonameId: 4954380,
-      lat: 42.37649,
-      lng: -71.23561,
+      lat: 43.73158115206511,
+      lng: 7.415045211338055,
       postalCode: "10001",
       region: "NY",
       timezone: "-05:00",
@@ -29,7 +31,13 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const [map, setMap] = useState(null);
-  const [position, setPosition] = useState([0, 0]);
+
+  // eslint-disable-next-line
+  const [position, setPosition] = useState([
+    43.73158115206511,
+    7.415045211338055,
+  ]);
+  const [error, setError] = useState(false);
 
   const inputIpHandler = (event) => {
     setInputIp(event.target.value);
@@ -38,16 +46,29 @@ const App = () => {
   const searchIpHandler = () => {
     setSearchIp(inputIp);
     setLoading(true);
-    console.log(typeof position[0], position[0]);
+    setError(false);
 
     map.setView(
       [parseFloat(position[0]) + parseFloat(0.0005), parseFloat(position[1])],
-      20
+      18
     );
   };
 
+  const onSearchEnter = (event) => {
+    if (event.key === "Enter") {
+      setSearchIp(inputIp);
+      setLoading(true);
+      setError(false);
+
+      map.setView(
+        [parseFloat(position[0]) + parseFloat(0.0005), parseFloat(position[1])],
+        17
+      );
+    }
+  };
+
   useEffect(() => {
-    /*     axios
+    /* axios
       .get(
         `https://geo.ipify.org/api/v1?apiKey=at_y4YhHJFie5l0wGKToY6vDDQ9FmWqI&domain=${searchIp}`
       )
@@ -56,10 +77,12 @@ const App = () => {
 
         setPosition([response.data.location.lat, response.data.location.lng]);
         setLoading(false);
-
-        console.log(data);
       })
-      .catch((err) => console.log(err)); */
+      .catch((err) => {
+        setError(true);
+        setInputIp("");
+        setLoading(false);
+      }); */
   }, [searchIp]);
 
   return (
@@ -73,18 +96,23 @@ const App = () => {
               value={inputIp}
               type="text"
               onChange={inputIpHandler}
-              placeholder="Search for any IP address or domain"
+              placeholder={
+                error
+                  ? "Invalid IP/Domain"
+                  : "Search for any IP address or domain"
+              }
+              error={error}
+              onKeyPress={onSearchEnter}
             />
             <Button onClick={searchIpHandler} />
           </Search>
           <Card
-            ip={data.ip}
-            loading={loading}
-            city={data.location.city}
-            region={data.location.region}
-            postalCode={data.location.postalCode}
-            timezone={data.location.timezone}
-            isp={data.isp}
+            ip={loading ? "---.---.---.---" : data.ip}
+            city={loading ? "---" : data.location.city}
+            region={loading ? "---" : data.location.region}
+            postalCode={loading ? "---" : data.location.postalCode}
+            timezone={loading ? "--:--" : data.location.timezone}
+            isp={loading ? "---" : data.isp}
           />
         </ContentSection>
         <MapSection>
@@ -92,13 +120,17 @@ const App = () => {
             <Spinner />
           ) : (
             <Map
+              className="map"
               center={[
-                parseFloat(position[0]) + parseFloat(0.0005),
+                parseFloat(position[0]) + parseFloat(0.00025),
                 parseFloat(position[1]),
               ]}
-              zoom={20}
+              zoom={17}
               scrollWheelZoom={true}
+              zoomControl={false}
               whenCreated={setMap}
+              minZoom={10}
+              maxZoom={18}
               markerPosition={[
                 parseFloat(position[0]),
                 parseFloat(position[1]),
@@ -130,6 +162,7 @@ const ContentSection = styled.div`
   height: 300px;
   max-height: 300px;
   background-image: url(${bg});
+  background-size: 100% 100%;
 
   padding: 24px 24px 0 24px;
 
@@ -172,14 +205,9 @@ const MapSection = styled.div`
   width: 100%;
   height: 100%;
 
-  & > div {
+  & > .map {
     width: 100%;
     height: inherit;
-
-    & > :first-child {
-      width: 100%;
-      height: inherit;
-    }
   }
 `;
 

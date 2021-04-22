@@ -15,6 +15,7 @@ export const theme = {
     darkGray: "hsl(0, 0%, 17%)",
     black: "hsl(0, 0%, 0%)",
     white: "#ffffff",
+    red: "#BD1111",
   },
 
   fontSize: {

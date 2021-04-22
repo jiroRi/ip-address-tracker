@@ -23,6 +23,7 @@ const Container = styled.input`
   border: none;
 
   &::placeholder {
-    color: ${(props) => props.theme.colors.darkGray};
+    color: ${(props) =>
+      props.error ? props.theme.colors.red : props.theme.colors.darkGray};
   }
 `;
