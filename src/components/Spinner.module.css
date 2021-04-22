@@ -1,22 +1,21 @@
 .loader,
 .loader:before,
 .loader:after {
-  background: #53a1a1;
+  background: #1c4592;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em !important;
-  height: 4em !important;
 }
 .loader {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 15000;
+  z-index: 99999;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #53a1a1;
+  color: #1c4592;
   text-indent: -9999em;
   position: relative;
   font-size: 11px;
