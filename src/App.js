@@ -69,7 +69,7 @@ const App = () => {
           parseFloat(position[0]) + parseFloat(0.0005),
           parseFloat(position[1]) - parseFloat(0.00025),
         ],
-        17
+        16
       );
     }
   };
@@ -133,11 +133,11 @@ const App = () => {
                 parseFloat(position[0]) + parseFloat(0.00025),
                 parseFloat(position[1]) - parseFloat(0.00025),
               ]}
-              zoom={17}
+              zoom={16}
               scrollWheelZoom={true}
               zoomControl={false}
               whenCreated={setMap}
-              minZoom={10}
+              minZoom={8}
               maxZoom={18}
               markerPosition={[
                 parseFloat(position[0]),
