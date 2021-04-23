@@ -48,7 +48,7 @@ const StyledText = styled.p`
       color: ${props.theme.colors.darkGray};
       font-size: ${props.theme.fontSize.mobileCard};
       font-weight: ${props.theme.fontWeight.medium};
-      line-height: 1.5;
+      line-height: 1.25;
 
       @media ${props.theme.device.tablet} {
         font-size: ${props.theme.fontSize.card};
