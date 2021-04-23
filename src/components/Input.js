@@ -9,7 +9,7 @@ const Container = styled.input`
 
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 48px;
   padding: 16px 64px 16px 24px;
   border-radius: 16px;
   outline: none;
@@ -25,5 +25,9 @@ const Container = styled.input`
   &::placeholder {
     color: ${(props) =>
       props.error ? props.theme.colors.red : props.theme.colors.darkGray};
+  }
+
+  @media ${(props) => props.theme.device.tablet} {
+    height: 56px;
   }
 `;
