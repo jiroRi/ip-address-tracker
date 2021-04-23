@@ -18,7 +18,7 @@ import {
 
 const App = () => {
   const [data, setData] = useState({
-    /*     ip: "192.212.174.101",
+    ip: "192.212.174.101",
     isp: `SpaceX Starlink`,
     location: {
       city: "Brooklyn",
@@ -29,12 +29,12 @@ const App = () => {
       postalCode: "10001",
       region: "NY",
       timezone: "-05:00",
-    }, */
+    },
   });
 
   const [inputIp, setInputIp] = useState("");
   const [searchIp, setSearchIp] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [map, setMap] = useState(null);
   const [position, setPosition] = useState([
@@ -54,7 +54,7 @@ const App = () => {
 
     map.setView(
       [parseFloat(position[0]) + parseFloat(0.0005), parseFloat(position[1])],
-      18
+      17
     );
   };
 
@@ -75,7 +75,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    axios
+    /* axios
       .get(
         `https://geo.ipify.org/api/v1?apiKey=at_y4YhHJFie5l0wGKToY6vDDQ9FmWqI&domain=${searchIp}`
       )
@@ -89,7 +89,7 @@ const App = () => {
         setError(true);
         setInputIp("");
         setLoading(false);
-      });
+      }); */
   }, [searchIp]);
 
   return (
@@ -133,11 +133,11 @@ const App = () => {
                 parseFloat(position[0]) + parseFloat(0.00025),
                 parseFloat(position[1]) - parseFloat(0.00025),
               ]}
-              zoom={16}
+              zoom={17}
               scrollWheelZoom={true}
               zoomControl={false}
               whenCreated={setMap}
-              minZoom={8}
+              minZoom={10}
               maxZoom={18}
               markerPosition={[
                 parseFloat(position[0]),
