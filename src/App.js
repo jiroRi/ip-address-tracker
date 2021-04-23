@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-// eslint-disable-next-line
 import axios from "axios";
 
 import { GlobalStyle } from "./GlobalStyle";
@@ -18,9 +17,8 @@ import {
 } from "./components";
 
 const App = () => {
-  // eslint-disable-next-line
   const [data, setData] = useState({
-    ip: "192.212.174.101",
+    /* ip: "192.212.174.101",
     isp: `SpaceX Starlink`,
     location: {
       city: "Brooklyn",
@@ -31,15 +29,14 @@ const App = () => {
       postalCode: "10001",
       region: "NY",
       timezone: "-05:00",
-    },
+    }, */
   });
 
   const [inputIp, setInputIp] = useState("");
   const [searchIp, setSearchIp] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [map, setMap] = useState(null);
-  // eslint-disable-next-line
   const [position, setPosition] = useState([
     43.73158115206511,
     7.415045211338055,
@@ -78,7 +75,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    /* axios
+    axios
       .get(
         `https://geo.ipify.org/api/v1?apiKey=at_y4YhHJFie5l0wGKToY6vDDQ9FmWqI&domain=${searchIp}`
       )
@@ -92,7 +89,7 @@ const App = () => {
         setError(true);
         setInputIp("");
         setLoading(false);
-      }); */
+      });
   }, [searchIp]);
 
   return (
