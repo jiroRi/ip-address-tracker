@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
+// eslint-disable-next-line
 import axios from "axios";
 
 import { GlobalStyle } from "./GlobalStyle";
@@ -17,6 +18,7 @@ import {
 } from "./components";
 
 const App = () => {
+  // eslint-disable-next-line
   const [data, setData] = useState({
     ip: "192.212.174.101",
     isp: `SpaceX Starlink`,
@@ -37,6 +39,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const [map, setMap] = useState(null);
+  // eslint-disable-next-line
   const [position, setPosition] = useState([
     43.73158115206511,
     7.415045211338055,
